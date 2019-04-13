@@ -1,0 +1,11 @@
+{% load apptags %}
+<div class="col col-xs-12 col-md-12">
+        <div class="caption">
+            <h4 class="tab"><b>{{name}}</b></h4>
+        </div>
+        {% for profile in names %}
+        {% if active != profile.pk %}
+        <a href="{% url 'vetbekje:target' profile.pk %}"><button  type="submit" class="btn btn-xlarge">{{profile.user.first_name}} </button></a>
+        {% endif %}
+        {% endfor %}
+</div>

@@ -1,0 +1,142 @@
+.navbar{
+    border-radius: 0;
+}
+
+.navbar-brand{
+    font-family: 'Exo 2', cursive;
+}
+
+a.pills:visited{
+    color:#3bc492;
+}
+
+.spacious{
+    margin-bottom: 15px;
+}
+
+.no-left{
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+.more-left{
+    padding-left: 15px;
+    margin-left: 15px;
+}
+
+p.tab{
+    font-family: 'Raleway', cursive;
+    font-size: 150%;
+    text-transform: capitalize;
+}
+
+p.thumb-name{
+    font-family: 'Raleway', cursive;
+    font-size: 115%;
+    text-transform: capitalize;
+    margin-bottom: 0px;
+}
+
+p.thumb-price{
+    font-family: 'Raleway', cursive;
+    font-size: 110%;
+    margin-bottom: 0px;
+}
+
+p.recipe-name{
+    font-family: 'Raleway', cursive;
+    font-size: 140%;
+    text-transform: capitalize;
+    margin-bottom: 0px;
+}
+
+p.recipe-type{
+    font-family: 'Raleway', cursive;
+    font-size: 110%;
+    margin-bottom: 0px;
+}
+
+h2.list-title{
+    font-family: 'Raleway', cursive;
+}
+
+.list-panel{
+    width=300;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:link {
+    color: white;
+    background-color: #3bc492;
+    font-size 150%;
+}
+
+.nav-pills > li.active > a:hover {
+    background-color: #efcb00;
+    color:white;
+    font-size 150%;
+}
+
+.table-hover tbody tr:hover td {
+  background-color: #3bc492 ;
+}
+
+.table-icons{
+    font-size: 1.4em;
+    color: #000;
+}
+
+.bigger_icon{
+    font-size: 30px;
+    color: #000;
+}
+
+.value-well{
+   background-color: #3bc492;
+   color: white;
+}
+
+.make-white{
+    color: white;
+}
+
+.row.display-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+.thumbnail {
+  height: 85%;
+  background-color: #fdfdfd;
+}
+
+.img-padding{
+    padding-left:15px;
+    padding-right:0px;
+    padding-bottom:0px;
+    padding-top:0px;
+
+}
+
+.caption-padding{
+        padding-left:5px;
+}
+
+.img-thumbnail{
+    border:0;
+    padding:1;
+    margin-left:0px;
+    width:100px;
+    height = 80px;
+}
+
+.btn-xlarge {
+    padding: 18px 28px;
+    font-size: 30px;
+    line-height: normal;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+
+.bigger {
+    font-size: 40px;
+}

@@ -1,0 +1,111 @@
+{% extends 'vetbekje/base.html' %}
+{% block title %} {{battle}} {% endblock %}
+
+{% block body %}
+{% if battle.done == 0 %}
+<div class="row">
+    <div class="col col-xs-0 col-md-1"></div>
+    <div class="col col-xs-3 col-md-2">
+        <div class="well">
+            <img src="{{battle.target.picture.url}}" class="img-responsive" style="width:100%;height:200px;"/>
+        </div>
+
+        {% if active == battle.challenger.pk %}
+        <div class="text-center">
+            <a href="{% url 'vetbekje:battle-win' battle.pk 1%}"><button  type="submit" class="btn btn-xlarge">{{battle.target.user.first_name}}<br>Wint</button></a>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col col-xs-6 col-md-6">
+        <div class="container-fluid">
+
+            <div class="well">
+                <h2 class="list-title text-center"> <span class="glyphicon glyphicon-arrow-left bigger_icon"></span> Who will win? <span class="glyphicon glyphicon-arrow-right bigger_icon"></span></h2>
+            </div>
+            <div class="row">
+                <div class="col col-xs-5 col-md-5">
+                    <div class="row">
+                        <div class="well text-center value-well">
+                            <h2 class="list-title make-white">{{battle.value|floatformat:"2" }}
+                            <span class="glyphicon glyphicon-bitcoin bigger_icon make-white"></span></h2>
+                            <!--<span class="glyphicon glyphicon-ruble bigger_icon make-white"></span></h2>-->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="well">
+                            <span class="glyphicon glyphicon-comment bigger_icon"></span><h4 class="list-title text-center">Da is nie</h4>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="col col-xs-4 col-md-4">-->
+                    <!--<div class="well text-center value-well">-->
+                        <!--<h2 class="list-title make-white">{{battle.value}}-->
+                        <!--<span class="glyphicon glyphicon-bitcoin bigger_icon make-white"></span></h2>-->
+                        <!--&lt;!&ndash;<span class="glyphicon glyphicon-ruble bigger_icon make-white"></span></h2>&ndash;&gt;-->
+                    <!--</div>-->
+                <!--</div>-->
+                <div class="col col-xs-2 col-md-2"></div>
+                <div class="col col-xs-5 col-md-5">
+                    <div class="row">
+                        <div class="well text-center value-well">
+                            <h2 class="list-title make-white">{{challenger_value|floatformat:"2" }}
+                            <span class="glyphicon glyphicon-bitcoin bigger_icon make-white"></span></h2>
+                            <!--<span class="glyphicon glyphicon-ruble bigger_icon make-white"></span></h2>-->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="well">
+                            <span class="glyphicon glyphicon-comment bigger_icon"></span><h4 class="list-title text-center">{{battle.bet_description}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                <!--<a href="{% url 'picnic:index' %}"><button  type="submit" class="btn btn-default">Go back</button>-->
+                <!--{% include 'picnic/message-template.html' %}-->
+        </div>
+    </div>
+
+    <div class="col col-xs-3 col-md-2">
+        <div class="well">
+            <img src="{{battle.challenger.picture.url}}" class="img-responsive img-thumbnail" style="width:100%;height:200px;" />
+        </div>
+        {% if active == battle.target.pk %}
+        <div class="text-center">
+            <a href="{% url 'vetbekje:battle-win' battle.pk 0%}"><button  type="submit" class="btn btn-xlarge">{{battle.challenger.user.first_name}}<br>Wint</button></a>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col col-xs-0 col-md-1"></div>
+    <div class="col col-xs-12" style="height:50px;"></div>
+</div>
+
+
+   <!--Mijn naam is Wilcoh-->
+<div class="well">
+    <div class="row">
+        <div class="col col-md-3 col-xs-2"></div>
+        <div class="col col-md-6  col-xs-8">
+            <div class="text-center">
+                <img src="https://i.ytimg.com/vi/WTzH1dDn3OA/maxresdefault.jpg" class="img-responsive" style="width:100%;max-height=400px">
+            </div>
+        </div>
+        <div class="col col-md-3 col-xs-2"></div>
+    </div>
+</div>
+{% else %}
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <h3 class="list-title"> {{battle.target.user.first_name}} claimde: "{{battle.bet_description}}" voor {{battle.value}} BP </h3>
+        {% if battle.target_won %} <h3 class="list-title"> en da was nog ook (niemand mag hem)</h3>
+        {% else %} <h3 class="list-title"> maar da was nie </h3> {% endif %}
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+
+{% endif %}
+
+
+{% endblock %}

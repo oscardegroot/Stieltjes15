@@ -1,0 +1,23 @@
+<div class="col col-xs-12 col-md-12">
+    <div class="well">
+        <a href="{% url 'vetbekje:battle-detail' battle.pk%}">
+            <div class="row">
+                <div class="col col-xs-3 col-md-3 ">
+
+                    <img src="{{battle.challenger.picture.url}}" class="img-responsive" style="width:150px;height:150px;"/>
+                </div>
+                <div class="col col-xs-6 col-md-6 text-center" style="display:inline-block;">
+                    <div class="well value-well">
+                        <h3 class="list-title make-white"> <b>({{battle.ratio|floatformat:"2" }} x){{battle.value|floatformat:"2" }}</b>
+                            <span class="glyphicon glyphicon-bitcoin make-white"></span>
+                        </h3>
+                    </div>
+                    <h3 class="list-title">{{battle.bet_description}}</h3>
+                </div>
+                <div class="col col-xs-3 col-xs-3">
+                    <img src="{{battle.target.picture.url}}" class="img-responsive" style="width:150px;height:150px;"/>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>

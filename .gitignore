@@ -1,0 +1,9 @@
+.idea/*
+.idea/*.xml
+media/
+backup/
+.drivedownload
+*.zip
+*(1)*
+todos.txt
+favicon_package_v0.16/

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} Stieltjes 15 {% endblock %}</title>
+    <!-- load static files -->
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'picnic/style.css' %}" />
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'picnic/theme/main.css' %}" />-->
+    <link rel="stylesheet" href="{% static 'picnic/theme/flexslider.css' %}">
+    <link rel="stylesheet" href="{% static 'picnic/theme/jquery.fancybox.css' %}">
+    <link rel="stylesheet" href="{% static 'picnic/theme/main.css' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="{% static 'picnic/theme/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'picnic/theme/font-icon.css' %}">
+    <link rel="stylesheet" href="{% static 'picnic/theme/animate.min.css' %}">
+    <link rel="icon" type="image/png" href="{% 'favicon/favicon-32.png' %}"/>
+
+<section class="banner" role="banner">
+  <header id="header">
+    <div class="header-content clearfix"> <a class="logo" href="index.html">Stieltjes 15</a>
+      <nav class="navigation" role="navigation">
+        <ul class="primary-nav">
+          <li><a href="{% url 'picnic:index' %}">Picnic</a></li>
+          <li><a href="{% url 'pilsbazen:index' 0 %}">Beer List</a></li>
+          <li><a href="{% url 'dinner:index' 0 %}">Dinner Signup</a></li>
+          <!--<li><a href="{% url 'picnic:login' %}"><span class="glyphicon glyphicon-off"></span>&nbsp;Login</a></li>-->
+        </ul>
+      </nav>
+      <a href="#" class="nav-toggle">Menu<span></span></a> </div>
+  </header>
+  <!-- banner text -->
+  <div class="container">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="banner-text text-center">
+            <h1>Stieltjes 15 </h1>
+            <h2>Platform</h2>
+            <a href="{% url 'picnic:register' %}" class="btn btn-large always-white">Sign Up</a>
+            <a href="{% url 'picnic:login' %}" class="btn btn-large always-white">Log In</a>
+      </div>
+      <!-- banner text -->
+    </div>
+  </div>
+</section>
+    <!-- intro section -->
+<section id="intro" class="section intro">
+  <div class="container">
+    <div class="col-md-8 col-md-offset-2 text-center">
+      <h3>Beter ga je inloggen!</h3>
+      <p>Zak strond!</p>
+    </div>
+  </div>
+</section>
+<!-- intro section -->
+</head>

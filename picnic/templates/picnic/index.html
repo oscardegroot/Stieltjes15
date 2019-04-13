@@ -1,0 +1,152 @@
+{% extends 'picnic/base.html' %}
+{% load apptags %}
+{% block title %} Picnic Lists {% endblock %}
+
+{% block body %}
+
+{% if object_list %}
+
+<!-- Navigation Pills -->
+<div class="container spacious">
+    <ul class="nav nav-pills green">
+          <li role="presentation" {% if active.1 %} class="active" {% endif %}><a class="pills" href="{% url 'picnic:index' %}">Mijn Zooi</a></li>
+          <li role="presentation" {% if active.0 %} class="active" {% endif %}><a class="pills" href="{% url 'picnic:index-total' %}">Alle Zooi</a></li>
+          <!--<li role="presentation"><a href="#Search">Messages</a></li>-->
+    </ul>
+</div>
+
+<!-- Current list -->
+<section id="List">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col col-lg-6 col-sm-12 col-xs-12">
+                <div class="well list-panel">
+                    <h2 class="list-title"> {{object_list}} </h2>
+                    <h3 class="list-subtitle"><span class="glyphicon glyphicon-calendar"></span> {{subtitle}}</h3>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="col-xs-9"> Artikel </th>
+                                    <!--<th scope="col"> Quantity </th>-->
+
+                                    {% if active.1 %}
+                                    <th scope="col" class="col-xs-2">  </th>
+                                    {% endif %}
+                                    <th scope="col" class="col-xs-1"> Totaal </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in item_list %}
+                                <tr>
+                                    <td scope="row"><a href="{% url 'picnic:detail' item.id %}">
+                                        <p class="tab">{{ item.name }} <span class="badge">{{ quantities|at_index:forloop.counter0 }}</span></p>
+                                    </a></td>
+                                    {% if active.1 %}
+                                    <td>
+                                        <a href="{% url 'picnic:add-to-list' item.id%}?q={{ request.GET.q }}#List">
+                                            <span class="glyphicon glyphicon-plus table-icons"></span>
+                                        </a>
+                                        <a href="{% url 'picnic:subtract-from-list' item.id%}?q={{ request.GET.q }}#List">
+                                            <span class="glyphicon glyphicon-minus table-icons"></span>
+                                        </a>
+                                        <a href="{% url 'picnic:remove-from-list' item.pk%}?q={{ request.GET.q }}#List">
+                                            <span class="glyphicon glyphicon-trash table-icons"></span>
+                                        </a>
+                                    </td>
+                                    {% endif %}
+                                    <td> <p class="tab">{{prices|at_index:forloop.counter0}}</p> </td>
+                                </tr>
+                                {% endfor %}
+                                <tr>
+                                    <td scope="row"></td>
+                                    {% if active.1 %}
+                                    <td></td>
+                                    {% endif %}
+                                    <td><p class="tab"> <b>{{ total|floatformat:2 }}</b> <p></p></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    {% if active.0 and total >= 25 %}
+                    <p> Totale bestel kosten zijn over de €25,-</p>
+                    {% endif %}
+                    <a href="{% url 'picnic:list-order' object_list.id %}"><button  type="submit" class="btn btn-default">Ik bestel!</button></a>
+                    {% if notify %}
+                    <a href="{% url 'picnic:list-notify' object_list.id %}"><button  type="submit" class="btn btn-default">Stuur Herinnering</button></a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col col-lg-6 col-sm-12 col-xs-12">
+                <div class="well list-panel">
+                    <h2 class="list-title"> Oude bestelling checken? </h2>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <th scope="col">
+                                    Bestelling
+                                </th>
+                            </thead>
+                            <tbody>
+                                {% for list in old_lists %}
+                                <tr>
+                                    <td scope="row">
+                                        <a class="pills" href="{% url 'picnic:list-order-detail' list.pk %}">Bestelling van {{list.profile.user.name}}</a> <small>{{list.deadline}}</small>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% if active.1 %}
+<section id="Search">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col col-lg-6">
+                {% include 'picnic/message-template.html' %}
+                <form id="searchform" action="{% url 'picnic:index' %}#Search" method="get" accept-charset="utf-8">
+                    {% csrf_token %}
+                    <div class="input-group spacious">
+                        <span class="input-group-btn"><button class="btn btn-secondary" type="button">Zoek</button></span>
+                        <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for..." name="q" key="q">
+                        <span class="input-group-btn">
+                            <a href="{% url 'picnic:item-add' %}"><button class="btn btn-secondary" type="button">
+                                <span class="glyphicon glyphicon-plus"></span> Nieuw Artikel
+                            </button></a>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row display-flex">
+            {% for item in search_list %}
+                {% include 'picnic/thumbnail_template.html' %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+
+
+{% else %}
+    <h2 class="list-title"> D'r is nog geen lijst!</h2>
+    <a href="{% url 'picnic:list-add' %}" class="btn btn-default" role="button"> Nieuwe Lijst Maken</a>
+{% endif %}
+{% endblock %}
+
+
+                    <!--</div>-->
+                    <!--<div class="col-sm">-->
+                    <!--</div>-->
+    <!--#3bc492-->

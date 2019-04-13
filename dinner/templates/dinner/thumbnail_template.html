@@ -1,0 +1,25 @@
+<div class="col col-xs-6 col-sm-6 col-lg-4">
+    <div class="thumbnail">
+        <div class="row">
+            <div class="col col-xs-5 col-sm-5 img-padding">
+                <a href="{{recipe.link}}" target="_blank">
+                    <img src="{{recipe.picture}}"  class="img-thumbnail">
+                </a>
+            </div>
+            <div class="col col-xs-7 caption-padding">
+                <div class="row">
+                    <div class="col col-xs-8">
+                        <p class="recipe-name"><b> {{recipe.name}}</b></p>
+                         <p class="recipe-type"> {{recipe.foodtype}}</p>
+                    </div>
+                    <div class="col col-xs-1">
+                        <p><a href="{% url 'dinner:recipe-remove' recipe.pk%}" class="btn btn-default" role="button"><span class="glyphicon glyphicon-trash"></span></a></p>
+                        <p><a href="{% url 'dinner:recipe-edit' recipe.pk %}" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-edit"></span></a></p>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

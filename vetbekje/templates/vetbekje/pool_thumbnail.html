@@ -1,0 +1,30 @@
+<div class="col col-xs-12 col-md-12">
+    <div class="well">
+        <a href="{% url 'vetbekje:pool-detail' pool.pk%}">
+            <div class="row">
+                <!--Overlapping pictures-->
+                <div class="col col-xs-12 col-md-7 ">
+                    <div class="row">
+                        {% for entry in pool.entries.all %}
+                        <div class="col col-md-2 col-xs-3">
+                            <img src="{{entry.profile.picture.url}}" class="rounded"  style="width:150px;height:150px;zindex={{forloop.counter0}};"/>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col col-xs-12 col-md-5 text-center" style="display:inline-block;">
+                    <div class="row">
+                        <h3 class="list-title">{{pool.description}}</h3>
+                    </div>
+                    <div class="row">
+                        <div class="well value-well">
+                            <h3 class="list-title make-white"> <b>{{pool.value|floatformat:"2" }}</b>
+                                <span class="glyphicon glyphicon-bitcoin make-white"></span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>

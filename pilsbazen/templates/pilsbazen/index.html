@@ -1,0 +1,34 @@
+{% extends 'pilsbazen/base.html' %}
+{% load apptags %}
+{% block title %} Pilsbaas Stand {% endblock %}
+
+{% block body %}
+<!-- Navigation Pills -->
+<div class="container-fluid spacious">
+    <ul class="nav nav-pills green">
+        <h4 class="tab"><li role="presentation"> Pilsbaas </li></h4>
+        {% for profile in profile_list %}
+        <li role="presentation" {% if active == profile.pk %} class="active" {% endif %}><a class="pills bigger" href="{% url 'pilsbazen:index' profile.pk%}">{{profile.user.first_name}}</a></li>
+        {% endfor %}
+        <li role="presentation"><a class="pills bigger" href="{% url 'pilsbazen:stand' %}">Stand</a></li>
+
+    </ul>
+</div>
+<section id="Turf">
+    <!--Pils-->
+    <div class="container-fluid spacious">
+        <div class="row">
+            {% for name in names %}
+            {% include 'pilsbazen/beer_input.html' %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<div class="container-fluid">
+    {% include 'picnic/message-template.html' %}
+</div>
+
+{% endblock %}
+                    <!--<a href="{% url 'pilsbazen:turf' active profile.pk %}">-->
+                        <!--<img src="{{profile.picture.url}}"  class="img-thumbnail">-->
+                    <!--</a>-->

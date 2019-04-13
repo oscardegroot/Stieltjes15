@@ -1,0 +1,13 @@
+{% load apptags %}
+<div class="col col-xs-12 col-md-12">
+    <div class="well">
+        <div class="caption">
+            <h4 class="tab"><b>{{name}}</b></h4>
+        </div>
+        {% for profile in profile_list %}
+        {% if active != profile.pk %}
+        <a href="{% url 'pilsbazen:turf' values|at_index:forloop.parentloop.counter0 active profile.pk %}"><button  type="submit" class="btn btn-xlarge">{{profile.user.first_name}} </button></a>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>

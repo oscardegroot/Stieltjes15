@@ -1,0 +1,45 @@
+<!--<div class="col col-sm-6 col-md-4 col-lg-3">-->
+    <!--<div class="thumbnail">-->
+        <!--<div class="row">-->
+            <!--<div class="col col-sm-5 col-md-4 col-lg-3 img-padding">-->
+                <!--<a href="{% url 'picnic:add-to-list' item.id%}?q={{ request.GET.q }}#Search">-->
+                    <!--<img src="{{item.picture}}"  class="img-thumbnail">-->
+                <!--</a>-->
+            <!--</div>-->
+            <!--<div class="col col-sm-7 col-md-8 col-lg-9 col-xl-10 caption-padding">-->
+
+                    <!--<p class="thumb-name"><b>{{item.name}}</b></p>-->
+                    <!--<p class="thumb-price">€ {{item.price}}</p>-->
+                     <!--<p><a href="{% url 'picnic:item-edit' item.pk %}" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-edit"></span></a></p>-->
+                    <!--&lt;!&ndash;<p>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<a href="#" class="btn btn-default" role="button"><span class="glyphicon glyphicon-trash"></span></a>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</p>&ndash;&gt;-->
+
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<div class="col col-xs-6 col-sm-4 col-lg-3">
+    <div class="thumbnail">
+        <div class="row">
+            <div class="col col-xs-5 col-sm-5 col-lg-3 img-padding">
+                 <a href="{% url 'picnic:add-to-list' item.id%}?q={{ request.GET.q }}#Search">
+                    <img src="{{item.picture}}"  class="img-thumbnail">
+                </a>
+            </div>
+            <div class="col col-xs-7 col-lg-8 caption-padding">
+                <div class="row">
+                    <div class="col col-xs-8 col-lg-10">
+                        <p class="recipe-name"><b> {{item.name}}</b></p>
+                         <p class="recipe-type">€ {{item.price}}</p>
+                    </div>
+                    <div class="col col-xs-1 col-lg-1">
+                        <p><a href="{% url 'picnic:item-remove' item.pk%}" class="btn btn-default" role="button"><span class="glyphicon glyphicon-trash"></span></a></p>
+                        <p><a href="{% url 'picnic:item-edit' item.pk %}" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-edit"></span></a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

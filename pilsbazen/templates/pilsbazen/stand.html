@@ -1,0 +1,46 @@
+{% extends 'pilsbazen/base.html' %}
+{% load apptags %}
+{% block title %} Pilsbaas Stand {% endblock %}
+
+{% block body %}
+<!-- Navigation Pills -->
+{% include 'picnic/message-template.html' %}
+<div class="container-fluid spacious">
+    <ul class="nav nav-pills green">
+        <h4 class="tab"><li role="presentation"> Pilsbaas </li></h4>
+        {% for profile in profile_list %}
+        <li role="presentation"><a class="pills" href="{% url 'pilsbazen:index' profile.pk%}">{{profile.user.first_name}}</a></li>
+        {% endfor %}
+        <li role="presentation" class="active"><a class="pills" href="{% url 'pilsbazen:stand'%}">Stand</a></li>
+
+    </ul>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col col-lg-4">
+            <div class="well list-panel">
+                <h2 class="list-title"> Pils Stand </h2>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="col-xs-5"> Pilser </th>
+                                <th scope="col" class="col-xs-3"> Stand </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for profile in profile_list %}
+                            <tr>
+                                <td scope="row"><p class="tab"> {{ profile.user.first_name }} </p></td>
+                                <td> <p class="tab">{{ profile.turfjes }}</p> </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <a href="{% url 'pilsbazen:stand-mail' %}"><button  type="submit" class="btn btn-default">Mail mij de stand</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

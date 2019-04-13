@@ -1,0 +1,23 @@
+{% extends 'picnic/base.html' %}
+{% block title %} New Item {% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-offset-1 col-sm-11 col-md-7">
+            <!--<div class="well">-->
+                {% include 'picnic/message-template.html' %}
+                <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% include 'picnic/form-template.html' %}
+                    <div class="form-group">
+                        <div class="col-sm-offset-0 col-sm-12">
+                            <button type="submit" class="btn btn-success">Add</button>
+                        </div>
+                    </div>
+                </form>
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+{% endblock %}

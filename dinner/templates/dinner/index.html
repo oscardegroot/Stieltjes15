@@ -1,0 +1,108 @@
+{% extends 'dinner/base.html' %}
+{% load apptags %}
+{% block title %} Dinner Signup {% endblock %}
+
+{% block body %}
+ <!--Navigation Pills-->
+<div class="container-fluid spacious">
+    <ul class="nav nav-pills green">
+        {% for day in object_list %}
+        <li role="presentation" {% if active == day.pk %} class="active" {% endif %}><a class="pills" href="{% url 'dinner:index' day.pk%}">{{day}}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+
+<section id="Signup">
+    {% include 'picnic/message-template.html' %}
+    <div class="row">
+        <div class="col col-xs-4 col-md-4 col-lg-4">
+            <div class="container-fluid">
+                <h3 class="list-title"> Wie is bij? ({{date}})</h3>
+                <div class="well list panel">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead></thead>
+                            <tbody>
+                                {% for profile in profiles %}
+                                <tr>
+                                    <td>{% if is_feut|at_index:forloop.counter0 %} <span class="glyphicon glyphicon-shopping-cart table-icons"></span> {% endif %}</td>
+                                    <td scope="row"><p class="tab"> {{profile.user.first_name}} </p></td>
+                                    <td><p class="tab"> {{profile.boodschap_stand|floatformat:2 }} </p></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <a href="{% url 'dinner:bij' active%}"><button  type="submit" class="btn btn-default">{% if bij %} Bij! {%else%} Ik pull een Maarten! {%endif%}</button></a>
+                    {% if not bij %} <a href="{% url 'dinner:feut' active%}"><button  type="submit" class="btn btn-default">{% if feut %} Ik ben boodschap feut! {%else%} Psych! {%endif%}</button></a>{% endif %}
+                </div>
+            </div>
+            <!--<div class="container-fluid">-->
+                <!--<h3> Feuten van vandaag: </h3>-->
+                    <!--{%for feut in feuten %}-->
+                    <!--{{feut.user.first_name}}-->
+                <!--{% endfor %}</h3>-->
+            <!--</div>-->
+            <div class="container-fluid">
+                <h3 class="list-title"> Wie was bij? {% if search %} ({{search.date}}) {% endif %}</h3>
+                <form id="searchform" action="{% url 'dinner:index' active%}" method="get" accept-charset="utf-8">
+                        {% csrf_token %}
+                    <div class="input-group spacious">
+                        <span class="input-group-btn"><button class="btn btn-secondary" type="button">Datum</button></span>
+                        <input type="text" class="form-control" placeholder="d-m-yyyy" aria-label="Search for..." name="q" key="q">
+                    </div>
+                </form>
+                {% if search and search.profiles.all%}
+                <div class="well">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <tbody>
+                                {% for profile in search.profiles.all %}
+                                 <tr><td scope="row">{% if old_feuten|at_index:forloop.counter0 %} <span class="glyphicon glyphicon-shopping-cart table-icons"></span> {% endif %}</td>
+                                 <td><p class="tab"> {{profile.user.first_name}} </p></td></tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+        <div class="col col-xs-8 col-md-8 col-lg-8">
+            <div class="container-fluid">
+                <h3 class="list-title spacious">  Wat gaan we eten? </h3>
+                <div class="row">
+                    <div class="col col-xs-12 col-md-12">
+                        <form id="searchform2" action="{% url 'dinner:index' active%}" method="get" accept-charset="utf-8">
+                            {% csrf_token %}
+                            <div class="input-group spacious">
+                                <!--<span class="input-group-btn"><button class="btn btn-secondary" type="button">Zoek</button></span>-->
+                                <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for..." name="q2" key="q2">
+                                <span class="input-group-btn">
+                                    <a href="{% url 'dinner:recipe-add' %}"><button class="btn btn-secondary more-left" type="button">
+                                        <span class="glyphicon glyphicon-plus"></span> Nieuw Recept
+                                    </button></a>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row display-flex">
+                    {% for recipe in recipe_list %}
+                    {% include 'dinner/thumbnail_template.html' %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+<!--<div class="container-fluid">-->
+    <!--{% include 'picnic/message-template.html' %}-->
+<!--</div>-->
+
+{% endblock %}

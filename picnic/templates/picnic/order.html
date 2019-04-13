@@ -1,0 +1,92 @@
+{% extends 'picnic/base.html' %}
+{% load apptags %}
+{% block title %} Order {% endblock %}
+
+{% block body %}
+<!-- Navigation Pills -->
+<div class="container spacious">
+    <ul class="nav nav-pills green">
+          <li role="presentation" {% if active.0 %} class="active" {% endif %}><a class="pills" href="{% url 'picnic:list-order' object_list.id %}">Overview</a></li>
+          <li role="presentation" {% if active.1 %} class="active" {% endif %}><a class="pills" href="{% url 'picnic:list-order-detail' object_list.id %}">Details</a></li>
+    </ul>
+</div>
+
+{% if active.0 %}
+<section id="Overview">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col col-lg-4">
+                <div class="well list-panel">
+                    <h2 class="list-title"> Overview </h2>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="col-xs-5"> Picniccer </th>
+                                    <th scope="col" class="col-xs-3"> Totaal </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for profile in profiles %}
+                                <tr>
+                                    <td scope="row"><p class="tab"> {{ profile.user.first_name }} </p></td>
+                                    <td> <p class="tab">{{ costs|at_index:forloop.counter0 }}</p> </td>
+                                </tr>
+                                {% endfor %}
+                                <tr>
+                                    <td scope="row"><b>Total</b></td>
+                                    <td><p class="tab"> <b>{{ total }}</b> <p></p></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    {% if is_ordered|is_false %}
+                    <a href="{% url 'picnic:list-order-finish' %}"><button  type="submit" class="btn btn-default">Klaar!</button></a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+{% if active.1 %}
+<section id="Detailed">
+    <div class="container-fluid">
+        <div class="row">
+            {% for profile in profiles %}
+            <div class="col col-lg-4">
+                <div class="well list-panel">
+                    <h2 class="list-title"> {{profile}} </h2>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="col-xs-5"> Item </th>
+                                    <th scope="col" class="col-xs-3"> Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for list_item in profile.objects %}
+                                <tr>
+                                    <td scope="row"><a href="{% url 'picnic:detail' list_item.item.id %}">
+                                        <p class="tab">{{ list_item.item.name }} <span class="badge">{{ list_item.quantity }}</span></p>
+                                    </a></td>
+                                    <td> <p class="tab">{{costs|at_index:forloop.counter0}}</p> </td>
+                                </tr>
+                                {% endfor %}
+                                <tr>
+                                    <td scope="row"></td>
+                                    <td><p class="tab"> <b>{{ costs|at_index:forloop.counter0 }}</b> <p></p></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+{% endif %}
+{% endblock %}

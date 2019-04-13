@@ -1,0 +1,45 @@
+{% extends 'picnic/base.html' %}
+{% block title %} Add To List {% endblock %}
+
+{% block body %}
+{% include 'picnic/message-template.html' %}
+<!-- The new item search -->
+<div class="container-fluid">
+    <form id="searchform" action="{% url 'picnic:item-list' %}" method="get" accept-charset="utf-8">
+        <div class="input-group">
+            <span class="input-group-btn"><button class="btn btn-secondary" type="button">Search</button></span>
+            <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for..." name="q">
+        </div>
+    </form>
+</div>
+
+<div class="container-fluid">
+    <!--<div class="panel panel-default">-->
+        <!--<div class="panel-body">-->
+            <div class="row">
+                {% for item in object_list %}
+                <div class="col-md-1">
+                    <div class="thumbnail">
+                        <a href="{% url 'picnic:add-to-list' item.id%}">
+                            <img src="{{item.picture}}" width="100" height="100" class="img-thumbnail">
+                        </a>
+                        <div class="caption">
+                            <h5><b>{{item.name}}</b></h5>
+                            <p color="gray">{{item.price}}</p>
+                             <!--<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>-->
+                            <p>
+                                <a href="#" class="btn btn-default" role="button"><span class="glyphicon glyphicon-trash"></span></a>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+                {% endfor %}
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+</div>
+
+{% endblock %}
+#kloten met css voor de marges...
+#/search?as_st=y&tbm=isch&hl=nl&as_q=bier&as_epq=&as_oq=&as_eq=&cr=&as_sitesearch=&safe=images&tbs=isz:i,iar:s
