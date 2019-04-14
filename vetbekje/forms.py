@@ -26,14 +26,12 @@ class BattleForm(forms.ModelForm):
 class PoolForm(forms.ModelForm):
     description = forms.CharField(max_length=200, required=True)
     value = forms.FloatField(max_value=2, min_value=0.01, initial=1.0, required=True)
-    entry = forms.CharField(max_length=50, required=True)
 
     class Meta:
         model = Pool
-        fields = ['description', 'value', 'entry']
+        fields = ['description', 'value']
 
     def __init__(self, *args, **kwargs):
         super(PoolForm, self).__init__(*args, **kwargs)
         self.fields['value'].label = "Hoeveel BP is de inzet pp?"
         self.fields['description'].label = "Waar gaat de pool over?"
-        self.fields['entry'].label = "Waar zet je zelf op in?"

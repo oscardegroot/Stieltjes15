@@ -77,9 +77,18 @@
         {% endif %}
     </div>
     <div class="col col-xs-0 col-md-1"></div>
-    <div class="col col-xs-12" style="height:50px;"></div>
 </div>
 
+<div class="row">
+    <div class="col col-xs-1 col-md-1"></div>
+    <div class="col col-xs-10 col-md-10">
+        <div class="text-center">
+            <a href="{% url 'vetbekje:battle-delete' battle.pk%}"><button  type="submit" class="btn btn-xlarge"><span class="glyphicon glyphicon-trash bigger_icon make-white"></span></button></a>
+        </div>
+    </div>
+    <div class="col col-xs-1 col-md-1"></div>
+    <div class="col col-xs-12" style="height:50px;"></div>
+</div>
 
    <!--Mijn naam is Wilcoh-->
 <div class="well">

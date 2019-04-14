@@ -15,21 +15,23 @@ class Battle(models.Model):
         return str(self.challenger) + " Versus " + str(self.target)
 
 
-class PoolEntry(models.Model):
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    entry = models.CharField(max_length=50)
-
-    def __str__(self):
-        return "Entry for " + self.profile.user.first_name + " betting on " + str(self.entry)
-
-
 class Pool(models.Model):
-    entries = models.ManyToManyField(PoolEntry, related_name='entries')
     description = models.CharField(max_length=200, default='')
     value = models.FloatField(default=0.1)
-    winner = models.ForeignKey(PoolEntry, default=None, null=True, on_delete=models.CASCADE, related_name='winner')
     done = models.BooleanField(default=False)
-    creator = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    creator = models.ForeignKey(Profile, on_delete=models.CASCADE, default=None)
 
     def __str__(self):
-        return "Pool worth " + str(self.value)
+        return "Pool worth " #+ str(self.value)
+
+
+class PoolEntry(models.Model):
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    entry = models.CharField(max_length=50, default='')
+    pool = models.ForeignKey(Pool, related_name='pool', default=None)
+    won = models.BooleanField(default=False)
+
+    def __str__(self):
+        return "Pool entry van" + self.profile.user.first_name
+
+
